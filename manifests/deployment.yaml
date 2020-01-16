@@ -1,0 +1,29 @@
+---
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: go-dummy
+  namespace: default
+  labels:
+    stack: frontend
+    app: go-dummy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: go-dummy
+  template:
+    metadata:
+      labels:
+        app: go-dummy
+    spec:
+      containers:
+        - name: primary
+          image: eliskovets/go-dummy
+          ports:
+            - containerPort: 9101
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9101

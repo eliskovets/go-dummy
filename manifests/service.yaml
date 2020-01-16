@@ -1,0 +1,14 @@
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: go-dummy
+  namespace: default
+spec:
+  selector:
+    app: go-dummy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9101
